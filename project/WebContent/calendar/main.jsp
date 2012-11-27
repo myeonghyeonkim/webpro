@@ -1,6 +1,10 @@
+<%@ page isThreadSafe="true" %>
+<%@ page session="true" %>
+<%@ page buffer="4kb" autoFlush="true" %>
 <%@ page contentType="text/html;charset=euc-kr" %>
 <%@ page import = "java.sql.*, java.util.*" %>
-<% request.setCharacterEncoding("euc-kr"); %>
+<%@ page import = "java.util.Calendar" %>
+<% request.setCharacterEncoding("utf-8"); %> //한글을 올바로 얻기위한 request 기본객체 메소드 호출.
 
 <HTML>
 <HEAD>
@@ -18,17 +22,17 @@
 </style>
 
 <%
-// Calendar클래스의 인스턴스 cal 생성
-java.util.Calendar cal = java.util.Calendar.getInstance();
+// Calendar클래스의 인스턴스 cal 생성 // 이걸 선언해야만 아래 year,month,date의 현재정보를 받아올수있는거야.,
+		Calendar cal = Calendar.getInstance();
 
 // JSP 기본객체 request.getParameter를 사용하여 url로 부터 year, month정보를 로드
 String strYear = request.getParameter("year");
 String strMonth = request.getParameter("month");
 
 // 날짜를 저장하는 변수 year, month, date에 오늘 날짜를 설정
-int year = cal.get(java.util.Calendar.YEAR);
-int month = cal.get(java.util.Calendar.MONTH);
-int date = cal.get(java.util.Calendar.DATE);
+int year = cal.get(Calendar.YEAR);
+int month = cal.get(Calendar.MONTH);
+int date = cal.get(Calendar.DATE);
 
 // url을 통해 읽어온 표시하고자 하는 날짜의 정보를 설정
 if(strYear != null)
@@ -39,11 +43,11 @@ if(strYear != null)
 
 cal.set(year, month, 1);
 
-int startDay = cal.getMinimum(java.util.Calendar.DATE);
+int startDay = cal.getMinimum(Calendar.DATE);
 // 표시하고자 하는 달의 마지막 날짜를 설정
-int endDay = cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH);
+int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 // 표시하고자 하는 달의 시작 날짜의 요일을 설정
-int start = cal.get(java.util.Calendar.DAY_OF_WEEK);
+int start = cal.get(Calendar.DAY_OF_WEEK);
 int newLine = 0;
 int j = 0;
 %>
