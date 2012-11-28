@@ -1,24 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<SCRIPT language="JavaScript">
-function Check()
-{
-	if(Member.id.value.length <1 )
-	{
-		alert("아이디를 입력하세요");
-		Member.id.focus();
-		return false;
-	}
-	if(Meber.pwd.value.length<1)
-	{
-		alert("비밀번호를 입력하세요");
-		Member.pass.focus();
-		return false;
-	}
-	Member.submit();
-}
-</SCRIPT>
 <head>
 	<meta charset="utf-8">
 	<title>STUDY-MEETING</title>
@@ -44,30 +26,25 @@ function Check()
 		<div id="body">
 			<div id="body_1"></div>
 			<div id="body_2">
-				<form action="" method="post" name="login">
-					<table align=center width='100' border='0' cellpadding='10' cellspacing='0'>
-						<tr>
-							<th>id : </th>
-							<td><input type="text" maxlength=5 size=5 name=id>
-							<td>
-								<input onclick='Check()' type='button' value='로그인'>
-								</td>
-						</tr>
-						<tr>
-							<th>비밀번호 : </th>
-							<td><input type="text" maxlength=5 size=5 name=pwd>
-						</tr>
-						<tr>
-							<td>아이디/비밀번호찾기<td>
-							<td><a href="member_input.jsp">회원가입</a></td>
-						</tr>
-						<tr>
-							<td bgcolor='cccccc' align='center'>
-								모임개설
-							</td>
-						</tr>
-					</table>
-				</form>
+				<form name="loginform" action="loginProcess.jsp" method="post">
+				<center>
+				<table border=1>
+				<tr>
+		<td colspan="2" align=center>
+			<b><font size=5>로그인 페이지</font></b>
+		</td>
+	</tr>
+	<tr><td>아이디 : </td><td><input type="text" name="id"/></td></tr>
+	<tr><td>비밀번호 : </td><td><input type="password" name="pwd"/></td></tr>
+	<tr>
+		<td colspan="2" align=center>
+			<a href="javascript:loginform.submit()">로그인</a>&nbsp;&nbsp;
+			<a href="joinForm.jsp">회원가입</a>
+		</td>
+	</tr>
+</table>
+</center>
+</form>
 				</div>
 			<div id="body_3"></div>
 			<div id="body_4"></div>
