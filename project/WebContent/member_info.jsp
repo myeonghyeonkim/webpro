@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>
+
 <%
 	String id=null;
 	if ((session.getAttribute("id")==null) || 
@@ -18,12 +17,16 @@
 	ResultSet rs=null;
 	
 	try {
-			Context init = new InitialContext();
-			DataSource ds = 
-				(DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
-			conn = ds.getConnection();
-			
-			pstmt=conn.prepareStatement("SELECT * FROM member WHERE id=?");
+		String url="jdbc:mysql://localhost:3306/webpro";
+		String user="admin";
+		String user_pwd="aldks12";
+		Class.forName("com.mysql.jdbc.Driver");//드라이버
+  		//Context init = new InitialContext();
+  		//DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
+  		
+			conn=DriverManager.getConnection(url,user,user_pwd);
+			String sql="SELECT * FROM user WHERE id=?";
+  		pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,info_id);
 			rs=pstmt.executeQuery();
 			rs.next();
@@ -37,13 +40,16 @@
 </head>
 <body>
 <center>
+
+
 <table border=1 width=300>
 	<tr align=center><td>아이디 : </td><td><%=rs.getString("id") %></td></tr>
-	<tr align=center><td>비밀번호 : </td><td><%=rs.getString("password") %></td></tr>
+	<tr align=center><td>비밀번호 : </td><td><%=rs.getString("pwd") %></td></tr>
 	<tr align=center><td>이름 : </td><td><%=rs.getString("name") %></td></tr>
-	<tr align=center><td>나이 : </td><td><%=rs.getString("age") %></td></tr>
-	<tr align=center><td>성별 : </td><td><%=rs.getString("gender") %></td></tr>
-	<tr align=center><td>이메일 주소 : </td><td><%=rs.getString("email") %></td></tr>
+	<tr align=center><td>핸드폰 번호 : </td><td><%=rs.getString("call1") %></td></tr>
+	
+	<tr align=center><td>마이페이지url : </td><td><%=rs.getString("mypage_url") %></td></tr>
+	
 	<tr align=center>
 		<td colspan=2><a href="member_list.jsp">리스트로 돌아가기</a></td>
 	</tr>

@@ -13,7 +13,7 @@
 		</td>
 	</tr>
 	<tr><td>아이디 : </td><td><input type="text" name="id"/></td></tr>
-	<tr><td>비밀번호 : </td><td><input type="password" name="pass"/></td></tr>
+	<tr><td>비밀번호 : </td><td><input type="password" name="pwd"/></td></tr>
 	<tr>
 		<td colspan="2" align=center>
 			<a href="javascript:loginform.submit()">로그인</a>&nbsp;&nbsp;

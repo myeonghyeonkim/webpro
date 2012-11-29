@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>
+
+
 <%
 	String id=null;
 	
@@ -16,13 +16,19 @@
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
 	try {
-			Context init = new InitialContext();
-			DataSource ds = 
-				(DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
-			conn = ds.getConnection();
-			
-			pstmt=conn.prepareStatement("SELECT * FROM member");
+		String url="jdbc:mysql://localhost:3306/webpro";
+		String user="admin";
+		String user_pwd="aldks12";
+		Class.forName("com.mysql.jdbc.Driver");//드라이버
+  		//Context init = new InitialContext();
+  		//DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
+  		
+			conn=DriverManager.getConnection(url,user,user_pwd);
+			String sql="SELECT * FROM user";
+  		pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
+			
+			
 	}catch(Exception e){
 		e.printStackTrace();
 	}
